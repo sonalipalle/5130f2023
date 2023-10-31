@@ -1,4 +1,7 @@
 Database: Firebase
-
-The Screenshots of the inputs being saved in the database are given in the word document.
-Word Document: SCREENSHOTS OF THE FIREBASE.pdf
+The screenshots of the database images being uploaded:
+1.jpg
+2.jpg
+3.jpg
+4.jpg
+5.jpg
