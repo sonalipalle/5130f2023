@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SONALI PALLE</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <style>
+        body {
+          background-image: url('shdka.jpg');
+        }
+        </style>
+
+    <h1>INVESTMENT PORTFOLIO</h1>
+    
+    <form id="investment-portfolio-form">
+        <h2>Investment Portfolio</h2>
+
+        
+        <label for="stocks">Individual Stocks:</label>
+        <input type="text" id="stocks" name="stocks" placeholder="Enter individual stocks investments">
+
+        <label for="bonds">Bonds:</label>
+        <input type="text" id="bonds" name="bonds" placeholder="Enter bonds investments">
+
+
+        <label for="mutual-funds">Mutual Funds:</label>
+        <input type="text" id="mutual-funds" name="mutual-funds" placeholder="Enter mutual funds investments">
+
+        <label for="etfs">ETFs:</label>
+        <input type="text" id="etfs" name="etfs" placeholder="Enter ETFs investments">
+
+        <label for="real-estate">Real Estate:</label>
+        <input type="text" id="real-estate" name="real-estate" placeholder="Enter real estate investments">
+
+        <label for="commodities">Commodities:</label>
+        <input type="text" id="commodities" name="commodities" placeholder="Enter commodities investments">
+
+        <label for="retirement-accounts">Retirement Accounts:</label>
+        <input type="text" id="retirement-accounts" name="retirement-accounts" placeholder="Enter retirement accounts investments">
+
+        <label for="alternative-investments">Alternative Investments:</label>
+        <input type="text" id="alternative-investments" name="alternative-investments" placeholder="Enter alternative investments">
+
+        <label for="cash-equivalents">Cash and Cash Equivalents:</label>
+        <input type="text" id="cash-equivalents" name="cash-equivalents" placeholder="Enter cash and cash equivalents investments">
+
+        <label for="savings-accounts">Savings Accounts:</label>
+        <input type="text" id="savings-accounts" name="savings-accounts" placeholder="Enter savings accounts investments">
+
+        <button type="button" onclick="submitInvestmentPortfolio()">Submit</button>
+    </form>
+
+    <h2>Investment Portfolio Summary</h2>
+    <div style="max-width: 400px;">
+        <canvas id="investment-chart"></canvas>
+    </div>
+    <p>Total Investment: <span id="total-investment">0</span></p>
+
+    <script>
+        function submitInvestmentPortfolio() {
+    const stocks = document.getElementById('stocks').value;
+    const bonds = document.getElementById('bonds').value;
+    const mutualFunds = document.getElementById('mutual-funds').value;
+    const etfs = document.getElementById('etfs').value;
+    const realEstate = document.getElementById('real-estate').value;
+    const commodities = document.getElementById('commodities').value;
+    const retirementAccounts = document.getElementById('retirement-accounts').value;
+    const alternativeInvestments = document.getElementById('alternative-investments').value;
+    const cashEquivalents = document.getElementById('cash-equivalents').value;
+    const savingsAccounts = document.getElementById('savings-accounts').value;
+
+    // Convert input to numbers and handle NaN values
+    const stocksCount = parseInt(stocks) || 0;
+    const bondsCount = parseInt(bonds) || 0;
+    const mutualFundsCount = parseInt(mutualFunds) || 0;
+    const etfsCount = parseInt(etfs) || 0;
+    const realEstateCount = parseInt(realEstate) || 0;
+    const commoditiesCount = parseInt(commodities) || 0;
+    const retirementAccountsCount = parseInt(retirementAccounts) || 0;
+    const alternativeInvestmentsCount = parseInt(alternativeInvestments) || 0;
+    const cashEquivalentsCount = parseInt(cashEquivalents) || 0;
+    const savingsAccountsCount = parseInt(savingsAccounts) || 0;
+
+    // Calculate the total number of investments
+    const totalInvestments =
+        stocksCount + bondsCount + mutualFundsCount +
+        etfsCount + realEstateCount + commoditiesCount +
+        retirementAccountsCount + alternativeInvestmentsCount +
+        cashEquivalentsCount + savingsAccountsCount;
+
+    // Create a data object for the pie chart
+    const data = {
+        labels: [
+            'Individual Stocks',
+            'Bonds',
+            'Mutual Funds',
+            'ETFs',
+            'Real Estate',
+            'Commodities',
+            'Retirement Accounts',
+            'Alternative Investments',
+            'Cash and Cash Equivalents',
+            'Savings Accounts'
+        ],
+        datasets: [{
+            data: [
+                stocksCount,
+                bondsCount,
+                mutualFundsCount,
+                etfsCount,
+                realEstateCount,
+                commoditiesCount,
+                retirementAccountsCount,
+                alternativeInvestmentsCount,
+                cashEquivalentsCount,
+                savingsAccountsCount
+            ],
+            backgroundColor: [
+                '#ffcc29',
+                '#36a2eb',
+                '#ff8e72',
+                '#a3e1d4',
+                '#ff66c3',
+                '#9d91a3',
+                '#42c5f5',
+                '#ffaf00',
+                '#b39ddb',
+                '#66bb6a'
+            ],
+        }]
+    };
+
+    document.getElementById('total-investment').textContent = totalInvestments;
+
+    // Create a pie chart
+    const ctx = document.getElementById('investment-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: data,
+    });
+}
+
+    </script>
+    <footer>
+        <p>&copy; SONALI PALLE</p>
+          </footer>   
+</body>
+</html>
