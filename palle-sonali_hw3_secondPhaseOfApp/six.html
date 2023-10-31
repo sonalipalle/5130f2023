@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SONALI PALLE</title>
+    
+    <script src="countries.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+       
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            color: #9bf110;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 50%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        span#current-location {
+            color: #0074cc;
+            font-weight: bold;
+        }
+
+        button[type="button"] {
+            background-color: #0074cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        button[type="button"]:hover {
+            background-color: #005a9c;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        #file-preview {
+            margin-top: 20px;
+        }
+
+        #file-preview img {
+            max-width: 100%;
+            max-height: 200px;
+        }
+
+        #file-preview .file-info {
+            margin-top: 10px;
+        }
+        /* Define your light mode styles here */
+body {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Add dark mode styles */
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Toggle container styles */
+.toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-container p {
+    margin-right: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>USER INFORMATION COLLECTION</h1>
+
+    <form id="detailsForm">
+        <h2>User Information</h2>
+
+        <label for="first-name">First Name:</label>
+        <input type="text" id="firstName" name="first-name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type= "text" id="lastName" name="last-name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="occupation">Occupation:</label>
+        <input type="text" id="occupation" name="occupation" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="place-of-birth">Place of Birth:</label>
+        <input type="text" id="placeOfBirth" name="place-of-birth" required>
+
+       <!--
+        <p>Your current location is: <span id="currentLocation">Loading...</span></p>
+<script src="index.js"></script>
+    <button type="button" onclick="getUserLocation()">Auto-Detect Location</button>
+       --> 
+       <label for="currentLocation">Current Location</label>
+       <input type="text" id="currentLocation" name="currentLocation" required>
+
+
+        <label for="destination">I'd like to be in:</label>
+        <select id="destination" name="destination"></select>
+
+        <label for="family-origin">My Family is from:</label>
+        <select id="familyOrigin" name="family-origin"></select>
+
+
+        <label for="resume">Upload Your Resume/CV (PDF):</label>
+        <input type="file" id="fileInput" name="resume" accept=".pdf" required>
+        
+
+        <div id="file-preview" class="file-info"></div>
+
+        <label for="facts-about-me">Facts About Me:</label>
+        <textarea id="facts" name="facts-about-me" placeholder="Enter interesting facts about yourself"></textarea>
+
+        <label for="hobbies">Hobbies:</label>
+        <textarea id="hobbies" name="hobbies" placeholder="List your hobbies and interests"></textarea>
+
+        <label for="My plans for future">My plans for future:</label>
+        <textarea id="plans" name="My plans for future" placeholder="List your My plans for future"></textarea>
+
+        <label for="My Favorite to go place">My Favorite to go palce:</label>
+        <textarea id="places" name="My Favorite to go place" placeholder="Name your Favorite place to go"></textarea>
+
+        <label for="My Favorite Food">My Favorite Food:</label>
+        <textarea id="food" name="My Favorite Food" placeholder="Favorite Food"></textarea>
+
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider round"></span>
+            </label>
+            <p>Dark Mode</p>
+        </div>
+
+
+        <div id="file-preview" class="file-info"></div>
+
+        <button type="submit" onclick="showConfirmation()">Submit</button>
+    </form>
+
+    <script>
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        const body = document.body;
+
+        darkModeToggle.addEventListener("change", () => {
+            if (darkModeToggle.checked) {
+                body.classList.add("dark-mode");
+                // You can save the user's preference in local storage here
+            } else {
+                body.classList.remove("dark-mode");
+                // You can update the user's preference in local storage here
+            }
+        });
+
+        // Check the user's preference from local storage (if available)
+        const userPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (userPrefersDark) {
+            darkModeToggle.checked = true;
+            body.classList.add("dark-mode");
+        }
+        function showConfirmation() {
+            const confirmed = confirm("Are you sure you want to submit?");
+            if (confirmed) {
+                alert("Form submitted successfully!");
+            }
+        }
+        
+    </script>
+    <footer>
+        <p>&copy; SONALI PALLE</p>
+          </footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+      <script src="./form.js"></script>   
+</body>
+</html>
