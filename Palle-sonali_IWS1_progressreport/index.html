@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin Count - Expense Tracker</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius: 8px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  .description {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #555;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: .5rem;
+    color: #666;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #4cae4c;
+  }
+
+  .auth-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .auth-buttons button {
+    flex-basis: 48%; /* Allows for margin without breaking to next line on smaller screens */
+  }
+
+  .expense-list {
+    margin-top: 20px;
+  }
+
+  .expense-item {
+    background: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      margin-top: 20px;
+    }
+
+    .auth-buttons button {
+      flex-basis: 100%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Coin Count - Expense Tracker</h2>
+  <p class="description">
+    Welcome to Coin Count, your personal finance assistant. Keep track of your daily expenses and manage your budget effectively. Simply log your expenditures below, and let us help you keep an eye on where your money goes!
+  </p>
+  <div class="auth-buttons">
+    <button id="login-btn">Login</button>
+    <button id="signup-btn">Signup</button>
+  </div>
+  <div>
+    <div class="form-group">
+      <label for="expense-name">Expense Name:</label>
+      <input type="text" id="expense-name" placeholder="Enter expense name">
+    </div>
+    <div class="form-group">
+      <label for="expense-amount">Amount:</label>
+      <input type="number" id="expense-amount" placeholder="Enter amount">
+    </div>
+    <button onclick="addExpense()">Add Expense</button>
+  </div>
+  <div class="expense-list" id="expense-list">
+    <!-- Expenses will be listed here -->
+  </div>
+</div>
+
+<script>
+let expenses = [];
+
+function addExpense() {
+  const nameInput = document.getElementById('expense-name');
+  const amountInput = document.getElementById('expense-amount');
+
+  if (nameInput.value === '' || amountInput.value === '') {
+    alert('Please fill out both fields.');
+    return;
+  }
+
+  const expense = {
+    name: nameInput.value,
+    amount: parseFloat(amountInput.value)
+  };
+
+  expenses.push(expense);
+  displayExpenses();
+  
+  nameInput.value = '';
+  amountInput.value = '';
+}
+
+function displayExpenses() {
+  const list = document.getElementById('expense-list');
+  list.innerHTML = ''; // Clear the list before adding new entries
+
+  expenses.forEach(expense => {
+    const item = document.createElement('div');
+    item.classList.add('expense-item');
+    item.innerHTML = `<span>${expense.name}</span><span>$${expense.amount.toFixed(2)}</span>`;
+    list.appendChild(item);
+  });
+}
+</script>
+
+</body>
+</html>
+
