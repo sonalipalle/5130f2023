@@ -1,5 +1,8 @@
 Project Name: CoinCount
 
+Week 1 Progress:
+In the provided HTML code, I integrated a simple yet functional front-end for an expense tracker web application titled "Coin Count". The interface features a welcoming description that outlines the purpose of the app, guiding users to manage their finances by logging and reviewing their expenses. Users are greeted with "Login" and "Signup" buttons, which lay the groundwork for future authentication implementation. Below, there's a form for inputting expense details, including the name and amount. Upon submission, expenses are added to a list displayed on the same page, allowing users to see a running tally of their entered expenses. The layout is styled with CSS for a clean and modern look, and media queries ensure the design is responsive across different devices. JavaScript is employed to handle the addition of expenses and dynamically update the list without the need for page reloads, although actual data persistence would require additional backend logic not included in this snippet.
+
 Project Concept:
 
 CoinCount is dedicated to providing a user-friendly, comprehensive financial management solution for individuals and small businesses. Our primary aim is to simplify expense and income tracking, offering valuable insights through an interactive dashboard, while promoting financial awareness. CoinCount empowers users to easily record and categorize expenses, monitor various income sources, and receive timely reminders for essential events, such as credit card APR due dates. Our ultimate goal is to facilitate effective financial management, reduce financial stress, and help users achieve their financial objectives.
@@ -11,9 +14,9 @@ Expense Tracking: Efficiently record expenses with options for categorization, d
 Income Management: Track various sources of income, specifying amounts, dates, and optional comments.
 Expense Categories: Organize expenses with categorization for easy record-keeping.
 Credit Card APR Reminders: Receive automated reminders for upcoming credit card APR due dates.
-Week 1 Progress:
 
-In the initial week of our project, we've achieved significant milestones in application development. We're delighted to announce the successful creation of a user-friendly frontend webpage that provides access to several crucial features:
+
+friendly frontend webpage that provides access to several crucial features:
 
 Dashboard: Users can now access a comprehensive dashboard for an overview of key financial metrics and data.
 Transaction Viewing: Our platform allows users to conveniently view their transactions, ensuring organized and accessible tracking of financial activities.
