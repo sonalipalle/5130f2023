@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px 0;
+            margin: 0;
+        }
+        form {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2e86c1;
+        }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Validation</h1>
+    <form action="#" method="post">
+        <label for="email">Email Address:</label>
+        <input type="text" id="email" name="email">
+        <br>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+        <br>
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="output"></div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("email").value;
+            const phoneInput = document.getElementById("phone").value;
+            const urlInput = document.getElementById("url").value;
+            const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const phoneRegex = /^(\(\d{3}\)|\d{3})[-. ]?\d{3}[-. ]\d{4}$/;
+           const urlRegex = /^(https?):\/\/([A-Za-z0-9\-_]+(?:\.[A-Za-z0-9\-_]+)*(?:\.[A-Za-z]{2,})+)(\/[^?#]*)?(?:\?([^#]*))?(?:#(.*))?$/;
+          
+
+
+
+
+            const output = document.getElementById("output");
+            output.innerHTML = "";
+            
+
+            function validateInput(input, regex, fieldName, errorMessage) {
+                if (regex.test(input)) {
+                    output.innerHTML += fieldName + " is valid.<br>";
+                } else {
+                    output.innerHTML += fieldName + " is invalid. " + errorMessage + "<br>";
+                }
+            }
+
+            validateInput(emailInput, emailRegex, "Email Address", "Please enter a valid email address format (e.g., user@example.com).");
+            validateInput(phoneInput, phoneRegex, "Phone Number", "Please enter a valid phone number format (e.g., (123) 456-7890 or 123-456-7890).");
+            validateInput(urlInput, urlRegex, "URL", "Please enter a valid URL format (e.g., http://example.com).");
+
+        });
+    </script>
+</body>
+</html>
