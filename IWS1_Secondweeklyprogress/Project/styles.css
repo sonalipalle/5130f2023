@@ -1,0 +1,83 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: rgb(3, 3, 3);
+}
+
+body {
+    background-image: url("Images/beach.png");
+    background-size: cover; /* Adjust as needed */
+    /* Other background properties can be added here (position, repeat, etc.) */
+}
+.container {
+  width: 80%;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.heading h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.about {
+  margin-bottom: 2em;
+}
+
+.about h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature {
+  text-align: center;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  line-height: 100px;
+  margin: auto;
+  margin-bottom: 0.5em;
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+p {
+  margin: 0.5em 0;
+}
+.home-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+
+.home-button img {
+  width: 32px; /* Or any size you want */
+  height: 30px;
+}
+#top-navigation {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.green-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+  border-radius: 5px;
+}
