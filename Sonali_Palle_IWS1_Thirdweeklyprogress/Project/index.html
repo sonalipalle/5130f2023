@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CoinCount-landing page</title>
+    <link rel="stylesheet" href="index_style.css">
+</head>
+
+<body>
+
+    <div id="home-container">
+        <div id="inner">
+            <img src="Images/logo2.png" alt="Crypts logo" id="logo">
+            <h1>Income - Expenses = CoinCount</h1>
+            <p class="subtitle">Empower Your Finances, Shape Your Future</p>
+            <a href="Login.html" class="get-started">Get Started</a>
+        </div>
+
+        <div id="illustration">
+            <img src="Images/coins.png" alt="coins img" id="coins" class="cc_icons">
+            <img src="Images/grocery.png" alt="grocery img" id="grocery" class="cc_icons">
+            <img src="Images/shop.png" alt="shop img" id="shop" class="cc_icons">
+            <img src="Images/monitor.png" alt="monitor img" id="monitor">
+        </div>
+
+        <div id="top-navigation">
+            <a href="insights_page.html" class="green-button">Insight</a>
+            <a href="Features.html" class="green-button">Features</a>
+            <a href="about.html" class="green-button">About</a>
+        </div>
+
+        <div id="how-it-works-content" style="display: none;">
+            <h2 style="font-weight: bold; font-size: 24px;">Our daily goal is to empower individuals to make wise financial decisions each and every day.</h2>
+            <p>We think that handling finances ought to be as simple as doing online shopping. It needs to be completed in a few clicks, anytime, and anyplace.</p>
+            <img src="path_to_your_image.jpg" alt="Image" class="round-image">
+        </div>
+    </div>
+
+    <script>
+        function displayHowItWorks() {
+            var content = document.getElementById("how-it-works-content");
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        
+    </script>
+</body>
+</html>
