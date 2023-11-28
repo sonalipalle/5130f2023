@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .expenses-header {
+            font-size: 24px;
+            color: #333;
+            padding: 10px 0;
+        }
+        .total-expenses {
+            font-size: 18px;
+            color: red;
+            margin-bottom: 20px;
+        }
+        .expense-form {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .expense-form input,
+        .expense-form select,
+        .expense-form button {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+        }
+        .expense-form button {
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+        }
+        .expense-form button:hover {
+            background-color: #4cae4c;
+        }
+        .expense-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .expense-description {
+            display: flex;
+            align-items: center;
+        }
+        .expense-description img {
+            margin-right: 10px;
+        }
+        .expense-description p {
+            margin: 0;
+        }
+        .expense-amount {
+            font-weight: bold;
+        }
+        .expense-actions img {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.getElementById('add-expense');
+            const expensesList = document.getElementById('expenses-list');
+            let totalExpenses = 0;
+
+            addButton.addEventListener('click', function() {
+                const expenseTitle = document.getElementById('expense-title').value;
+                const expenseAmount = parseFloat(document.getElementById('expense-amount').value);
+                const expenseDate = document.getElementById('expense-date').value;
+                const expenseCategory = document.getElementById('expense-category').value;
+
+                // Update total expenses
+                totalExpenses += expenseAmount;
+                document.getElementById('total-expenses').textContent = `Total Expenses: - $${totalExpenses.toFixed(2)}`;
+
+                // Create expense item element
+                const expenseItem = document.createElement('div');
+                expenseItem.className = 'expense-item';
+                expenseItem.innerHTML = `
+                    <div class="expense-description">
+                        <p class="expense-title">${expenseTitle}</p>
+                    </div>
+                    <div>
+                        <p class="expense-date">${expenseDate}</p>
+                        <p class="expense-category">${expenseCategory}</p>
+                    </div>
+                    <div class="expense-amount">$${expenseAmount.toFixed(2)}</div>
+                    <div class="expense-actions">
+                        <button onclick="deleteExpense(this, ${expenseAmount})">Delete</button>
+                    </div>
+                `;
+                expensesList.appendChild(expenseItem);
+
+                // Clear the form
+                document.getElementById('expense-title').value = '';
+                document.getElementById('expense-amount').value = '';
+                document.getElementById('expense-date').value = '';
+                document.getElementById('expense-category').selectedIndex = 0;
+            });
+
+            window.deleteExpense = function(button, amount) {
+                // Remove expense item element
+                button.parentElement.parentElement.remove();
+
+                // Update total expenses
+                totalExpenses -= amount;
+                document.getElementById('total-expenses').textContent = `Total Expenses: - $${totalExpenses.toFixed(2)}`;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="expenses-header">Expenses</div>
+        <div class="total-expenses" id="total-expenses">Total Expenses: - $0.00</div>
+        <div class="expense-form">
+            <input type="text" id="expense-title" placeholder="Expense Title">
+            <input type="number" id="expense-amount" placeholder="Expense Amount">
+            <input type="date" id="expense-date">
+            <select id="expense-category">
+                <option>Select Option</option>
+                <option>Education</option>
+                <option>Groceries</option>
+                <option>Health</option>
+                <!-- Add more options here -->
+            </select>
+            <input type="text" id="expense-reference" placeholder="Add A Reference">
+            <button type="button" id="add-expense">+ Add Expense</button>
+        </div>
+        <div id="expenses-list">
+            <!-- Expense items will be added here -->
+        </div>
+    </div>
+</body>
+</html>
