@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#28a745">
+    <!-- Add this meta tag to enable PWA functionality -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Add this meta tag for the PWA name -->
+<meta name="apple-mobile-web-app-title" content="My PWA">
+
+<!-- Add this link tag for PWA icons -->
+<link rel="apple-touch-icon" href="icon.png">
+
+<!-- Add this link tag for the PWA manifest -->
+<link rel="manifest" href="manifest.json">
+
+    <script src="script.js" defer></script>
+
+    <title>Progressive Web App</title>
+    <style>
+        /* Common styles for all pages */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Sign Up and Login page styles */
+        h2 {
+            color: #333333;
+        }
+
+        form {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: inline-block;
+        }
+
+        label, input, button {
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            padding: 8px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        input[type="text"], input[type="password"] {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        /* Additional styles for the Home page */
+        #location-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        /* Additional styles for the Location-based information */
+        #location-info h3 {
+            color: #333333;
+        }
+    </style>
+    <script>
+        function guestSignIn() {
+            // Simulate a sign-in process
+            alert('Signed in as a guest successfully');
+            // Redirect or perform other actions as needed
+            return false; // Prevents the default link behavior
+        }
+
+        // Add any JavaScript functions here
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+            });
+        }
+
+        window.onload = function() {
+            fetch('http://ip-api.com/json')
+            .then(response => response.json())
+            .then(data => {
+                const userLocation = data.city;
+                const countryCode = data.countryCode;
+                document.getElementById('location').textContent = userLocation;
+
+                // Fetching weather data
+                const weatherApiUrl = `https://api.weatherapi.com/v1/current.json?key=fc11e6005ff94cdf89522741231411&q=${userLocation}`;
+                fetch(weatherApiUrl)
+                .then(response => response.json())
+                .then(weatherData => {
+                    document.getElementById('weather').textContent = `${weatherData.current.condition.text}, ${weatherData.current.temp_c}°C`;
+
+                    // Displaying local time
+                    const timezone = weatherData.location.tz_id;
+                    displayLocalTime(timezone);
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                    document.getElementById('weather').textContent = 'Unable to fetch weather data';
+                });
+
+                // Displaying currency, language, and local facts
+                document.getElementById('currency').textContent = getCurrencyByCountry(countryCode);
+                document.getElementById('local-language').textContent = getLocalLanguageByCountry(countryCode);
+                document.getElementById('local-facts').textContent = getLocalFactsByCountry(countryCode);
+            })
+            .catch(error => {
+                console.error('Error fetching location data:', error);
+            });
+        };
+
+        function displayLocalTime(timezone) {
+            try {
+                const currentTime = new Date().toLocaleTimeString('en-US', {timeZone: timezone});
+                document.getElementById('local-time').textContent = currentTime;
+            } catch (error) {
+                console.error('Error displaying local time:', error);
+                document.getElementById('local-time').textContent = 'Unable to display local time';
+            }
+        }
+
+        function getCurrencyByCountry(countryCode) {
+            // Simplified implementation
+            return countryCode === 'US' ? 'USD' : 'EUR';
+        }
+
+        function getLocalLanguageByCountry(countryCode) {
+            // Hypothetical implementation
+            const languages = {
+                'US': 'English',
+                'FR': 'French',
+                'DE': 'German',
+                // Add more countries and languages as needed
+            };
+            return languages[countryCode] || 'Unknown';
+        }
+
+        function getLocalFactsByCountry(countryCode) {
+            // Hypothetical implementation
+            const facts = {
+                'US': 'Diverse landscapes, including vast deserts and lush forests.',
+                'FR': 'Famous for the Eiffel Tower',
+                'DE': 'Known for its beer culture',
+                // Add more countries and facts as needed
+            };
+            return facts[countryCode] || 'No facts available';
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome</h1>
+
+ <!-- Sign Up Form -->
+<h2>Sign Up</h2>
+<form id="signupForm">
+  Email: <input type="email" id="signupEmail" name="email" required><br>
+  Password: <input type="password" id="passwordInput" name="password" required><br>
+
+  <button type="submit">Sign Up</button>
+</form>
+
+<!-- Sign In Form -->
+<h2>Sign In</h2>
+<form id="signinForm">
+  Email: <input type="email" id="signinEmail" name="email" required><br>
+  Password: <input type="password" id="signinPassword" name="password" required><br>
+
+
+  <button type="submit">Sign In</button>
+</form>
+
+<!-- Guest Access -->
+<h2>Guest Access</h2>
+<form id="guestForm">
+  Email: <input type="email" id="guestEmail" name="email" required><br>
+  <button type="submit">Access as Guest</button>
+</form>
+
+
+    <!-- Location-based information -->
+    <div id="location-info">
+        <h3>Your Location: <span id="location"></span></h3>
+        <p>Weather: <span id="weather"></span></p>
+        <p>Local Time: <span id="local-time"></span></p>
+        <p>Currency: <span id="currency"></span></p>
+        <p>Local Language: <span id="local-language"></span></p>
+        <p>Local Facts: <span id="local-facts"></span></p>
+    </div>
+
+</body>
+</html>
+
