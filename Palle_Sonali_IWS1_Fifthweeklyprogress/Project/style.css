@@ -1,0 +1,160 @@
+body {
+    background-image: url('Images/beach.png');
+    font-family: 'Lato', Helvetica, sans-serif !important;
+    font-size: 14px;
+    color: #808080;
+    font-weight: normal;
+    overflow-x: hidden;
+    line-height: 25px;
+    text-align: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Section headers styling */
+.section-header {
+    padding: 100px 0 75px;
+    text-align: center;
+}
+
+.section-header h2 {
+    font-size: 45px;
+    line-height: 40px;
+    text-transform: uppercase;
+    margin: 15px 0 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header .section-legend {
+    font-size: 16px;
+    color: #808080;
+}
+
+/* Row and focus box styling for horizontal layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -15px; 
+}
+
+.circle {
+    padding: 0 15px;
+    margin-bottom: 25px;
+    flex: 1;
+    max-width: 25%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .circle {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .circle {
+        max-width: 100%;
+    }
+}
+
+/* Service icon styling */
+.icons {
+    width: 145px;
+    height: 145px;
+    margin: auto;
+    border-radius: 50%;
+    border: 10px solid #ececec;
+    position: relative;
+    transition: border-color 0.3s ease; 
+}
+
+/* Apply hover effect for each icon */
+.circle:nth-child(4n+1) .icons:hover {
+    border-color: #e96656;
+}
+
+.circle:nth-child(4n+2) .icons:hover {
+    border-color: #34d293;
+}
+
+.circle:nth-child(4n+3) .icons:hover {
+    border-color: #3ab0e2;
+}
+
+.circle:nth-child(4n+4) .icons:hover {
+    border-color: #f7d861;
+}
+
+/* Border bottom before pseudo-elements for headers */
+.RBB:before,
+.green-border-bottom:before,
+.blue-border-bottom:before,
+.yellow-border-bottom:before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    bottom: -9px;
+    margin: auto;
+    z-index: 1;
+}
+
+.RBB:before { width: 75%; background: #e96656; left: 12.5%; }
+.green-border-bottom:before { width: 75%; background: #34d293; left: 12.5%; }
+.blue-border-bottom:before { width: 75%; background: #3ab0e2; left: 12.5%; }
+.yellow-border-bottom:before { width: 75%; background: #f7d861; left: 12.5%; }
+
+/* h3 and p tag styling */
+.circle h3 {
+    font-size: 17px;
+    color: #404040;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    background: none;
+}
+
+.circle p {
+    font-size: 14px;
+    color: #808080;
+}
+
+/* img icons */
+.img {
+    display: block;
+    height: 63px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+.home-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+}
+
+.home-button img {
+    width: 32px; /* Or any size you want */
+    height: 30px;
+}
+#top-navigation {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.green-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    border-radius: 5px;
+}
